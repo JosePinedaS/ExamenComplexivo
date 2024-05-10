@@ -1,0 +1,38 @@
+﻿@model Salud_Vida_2.Models.UserModel
+
+@{
+    ViewBag.Title = "Cambio de Contraseña";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+
+<h2>Cambia tu Contraseña</h2>
+
+@using (Html.BeginForm("CambioPass", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="currentPassword" class="control-label text-primary" style="font-size: larger;">Actual Contraseña</label>
+        <input type="password" id="currentPassword" name="currentPassword" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="newPassword" class="control-label text-primary" style="font-size: larger;">Nueva Contraseña</label>
+        <input type="password" id="newPassword" name="newPassword" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="confirmNewPassword" class="control-label text-primary" style="font-size: larger;">Confirmar Nueva Contraseña</label>
+        <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}

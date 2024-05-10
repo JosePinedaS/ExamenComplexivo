@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Asegúrate de que estas rutas sean correctas y estén apuntando a la versión de Bootstrap que estás usando -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <!-- Agrega la clase navbar-dark -->
+            <div class="container-fluid">
+                <!-- Logo o nombre de la app, ajusta esto según necesites -->
+                @Html.ActionLink("Salud y Vida", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
+
+                <!-- Toggle button for mobile view -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                    <!-- Links on the left -->
+                    <!-- Botones para las acciones de usuario -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("Ver Ejercicios", "Ejercicio", "User", new { area = "" }, new { @class = "nav-link btn  text-dark", style = "margin: 0px 30px 0px 30px;" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Empezar Entrenamiento", "Entrenamiento", "User", new { area = "" }, new { @class = "nav-link btn  text-dark" })
+                        </li>
+                    </ul>
+
+                    <!-- Mini perfil de usuario -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Session["NombreCompleto"] <img src="https://via.placeholder.com/30" alt="User Image" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="width: auto;">
+                                @Html.ActionLink("Perfil", "Usuario", "User", new { area = "" }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Progreso", "Progreso", "User", new { area = "" }, new { @class = "dropdown-item" })
+                                @if (Session["EsNoAdministrador"] != null && (bool)Session["EsNoAdministrador"]) // Verifica si la sesión no es nula y el usuario es no administrador
+                                {
+                                    if ((int)Session["DiasRestantes"] < 5)
+                                    {
+                                        <a class='dropdown-item text-bg-info' href='#'>Dias Restantes: <span class='text-danger'>@Session["DiasRestantes"]</span></a>
+                                    }
+                                    else
+                                    {
+                                        <a class='dropdown-item text-bg-info' href='#'>Dias Restantes: <span>@Session["DiasRestantes"]</span></a>
+                                    }
+                                }
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Cerrar sesión", "Logout", "Access", new { area = "" }, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>
+                    &copy; @DateTime.Now.Year - José Pineda | Teléfono: 0998190011 | Instagram:ImJose-ps
+                    <img src="~/Imagenes/imjose_ps_qr.png" style="max-height: 20px" />
+                </p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+
+
+    </html >
+<style>
+    body {
+        background: linear-gradient(to bottom,rgba(64, 224, 208, 0.7), rgba(255, 255, 255, 0.5));
+        /* Altura mínima del fondo del 100% de la altura de la ventana */
+        min-height: 100vh;
+        /* Para asegurar que el texto sea legible */
+        color: #242424; /* Color de texto más oscuro */
+        /* Fuente elegante con fuentes de respaldo */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Tamaño de fuente legible */
+        font-size: 18px;
+        /* Espaciado de línea */
+        line-height: 1.6;
+    }
+</style>

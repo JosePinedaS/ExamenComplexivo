@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Salud_Vida_2.Models.EjerciciosModel>
+
+@{
+    ViewBag.Title = "Ejercicio";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+
+<h1>Ejercicios</h1>
+
+<div class="container">
+
+    <div class="row">
+        @if (Model != null && Model.Any()) // Verificar si hay datos en el modelo
+        {
+            foreach (var ejercicio in Model)
+            {
+                <div class="col-md-4" style="text-align:center">
+                    <div class="card mb-4 shadow-sm" style="width: 250px; background-color: rgba(64, 224, 208, 0.7); color: black; border-radius: 15px; transition: transform 0.6s;">
+                        <button type="button" class="btn" style="padding:0; background-color: rgba(64, 224, 208, 0.7); border-radius: 10px; transition: background-color 0.3s;" 
+                                onmouseover="this.style.backgroundColor = '#fff'; this.parentNode.parentNode.style.transform = 'scale(1.05)';" onmouseout="this.style.backgroundColor='rgba(64, 224, 208, 0.7)'; this.parentNode.parentNode.style.transform = 'scale(1)';" onclick="mostrarDetalles('@ejercicio.NombreEjercicio', '@ejercicio.ZonaEjercicio', '@ejercicio.MetEjercicio', '@ejercicio.DetalleEjercicio', '@ejercicio.ImagenEjercicio')">
+                            <img class="bd-placeholder-img card-img-top" src="@ejercicio.ImagenEjercicio" alt="Imagen de Ejercicio" style="width: 100%; height: auto; border-radius: 15px 15px 15px 15px;">
+                            <p class="card-text text-dark">@ejercicio.NombreEjercicio</p>
+                        </button>
+                    </div>
+                </div>
+
+
+
+            }
+        }
+        else
+        {
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    No se encontraron ejercicios.
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="popupDetalles" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupDetallesLabel"></h5>
+                <button type="button" class="close" onclick="cerrarDetalles()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="imagenEjercicioModal" class="bd-placeholder-img" src="" alt="Imagen de Ejercicio" style="width: 100%; height: auto;">
+                <p id="zonaEjercicio"></p>
+                <p id="metEjercicio"></p>
+                <p id="detalleEjercicio"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function mostrarDetalles(nombre, zona, met, detalle, imagen) {
+        document.getElementById("popupDetallesLabel").innerText = nombre;
+        document.getElementById("zonaEjercicio").innerText = "Zona: " + zona;
+        document.getElementById("metEjercicio").innerText = "MET: " + met;
+        document.getElementById("detalleEjercicio").innerText = detalle;
+        document.getElementById("imagenEjercicioModal").src = imagen;
+        $('#popupDetalles').modal('show');
+    }
+
+    function cerrarDetalles() {
+        $('#popupDetalles').modal('hide');
+    }
+</script>

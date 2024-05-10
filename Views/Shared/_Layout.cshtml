@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .login-container {
+            width: 360px; /* Ajusta el ancho según sea necesario */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: #fff; /* Fondo del formulario */
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column; /* Organiza los hijos (inputs, botón) en columna */
+        }
+
+        .icon-input {
+            position: relative;
+            margin-bottom: 15px; /* Espacio entre los inputs */
+        }
+
+            .icon-input i {
+                position: absolute;
+                top: 12px;
+                left: 10px;
+                color: #ccc; /* Color de los iconos */
+            }
+
+        .form-control {
+            padding-left: 40px; /* Espacio para el icono dentro del input */
+            height: 40px; /* Altura de los inputs */
+        }
+
+        .form-control, .btn {
+            border-radius: 20px; /* Bordes redondeados para los inputs y botón */
+        }
+
+        .btn-primary {
+            width: 100%; /* El botón ocupa todo el ancho del formulario */
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Acceder", "Login", "Access", new { area = "" }, new { @class = "btn btn-outline-light" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                &copy; @DateTime.Now.Year - José Pineda | Teléfono: 0998190011 | Instagram:ImJose-ps
+                <img src="~/Imagenes/imjose_ps_qr.png" style="max-height: 20px" />
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" crossorigin="anonymous"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewBag.Title = "Progreso";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6" style="margin-top: 20px">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Reporte semanal de tus calorias quemadas</div>
+
+            <div class="panel-body">
+                <canvas id="chartLine" width="100" height="50"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6" style="margin-top: 20px">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Reporte Mensual de tus calorias quemadas</div>
+
+            <div class="panel-body">
+                <canvas id="chartLineMensual" width="100" height="50"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6" style="margin-top: 100px">
+        <div class="panel panel-default">
+            <div class="panel-heading"> Reporte de tus ejercicios Favoritos</div>
+
+            <div class="panel-body">
+                <canvas id="chartPai" width="100" height="50"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        jQuery.ajax({
+            url: '@Url.Action("CaloriasSemanales", "User")',
+            type: "Post",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                console.log(data)
+
+                var arrayFecha = []
+                var arrayCalorias = []
+
+                for (var i = 0; i < data.length; i++) {
+                    var fecha = new Date(parseInt(data[i].Fecha.substr(6))); // Extrae el número de milisegundos y lo convierte en un objeto Date
+                    var dia = fecha.getDate().toString().padStart(2, '0'); // Obtiene el día del mes y lo ajusta al formato "dd"
+                    var mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Obtiene el mes (se suma 1 porque los meses en JavaScript son indexados desde 0) y lo ajusta al formato "mm"
+                    var anio = fecha.getFullYear(); // Obtiene el año
+                    var fechaFormateada = `${dia}/${mes}/${anio}`; // Combina el día, mes y año en el formato deseado
+                    arrayFecha.push(fechaFormateada);
+                    arrayCalorias.push(data[i].CaloriasQuemadas)
+                }
+
+                var controlador = document.getElementById('chartLine');
+
+                var graficoLine = new Chart(controlador, {
+                    type: 'line',
+                    data: {
+                        labels: arrayFecha,
+                        datasets: [
+                            {
+                                label: "reporte",
+                                data: arrayCalorias,
+                                fill: false,
+                                borderColor:
+                                    'rgb(255, 99, 132)',
+                                tension: 0.1
+
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    display: true
+                                }
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    display: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+
+        jQuery.ajax({
+    url: '@Url.Action("CaloriasMensuales", "User")',
+    type: "Post",
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8',
+    success: function (data) {
+        console.log(data)
+
+        var arrayFecha = []
+        var arrayCalorias = []
+
+        for (var i = 0; i < data.length; i++) {
+
+            arrayFecha.push(data[i].Mes);
+            arrayCalorias.push(data[i].CaloriasQuemadas)
+        }
+
+        var controlador = document.getElementById('chartLineMensual');
+
+        var graficoLine = new Chart(controlador, {
+            type: 'line',
+            data: {
+                labels: arrayFecha,
+                datasets: [
+                    {
+                        label: "reporte",
+                        data: arrayCalorias,
+                        fill: false,
+                        borderColor:
+                            'rgb(255, 99, 132)',
+                        tension: 0.1
+
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: true
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: true
+                        }
+                    }]
+                }
+            }
+        });
+
+    },
+    error: function (error) {
+        console.log(error)
+    }
+        });
+
+        jQuery.ajax({
+    url: '@Url.Action("EjerciciosComunes", "User")',
+    type: "Post",
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8',
+    success: function (data) {
+        console.log(data)
+
+        var arrayEjercicio = []
+        var arrayCantidad = []
+
+        for (var i = 0; i < data.length; i++) {
+
+            arrayEjercicio.push(data[i].NombreEjercicio);
+            arrayCantidad.push(data[i].Cantidad)
+        }
+
+        var controlador = document.getElementById('chartPai');
+
+        var graficoPai = new Chart(controlador, {
+            type: 'polarArea',
+            data: {
+                labels: arrayEjercicio,
+                datasets: [
+                    {
+                        label: "Ejercicios",
+                        data: arrayCantidad,
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 205, 86)',
+                            'rgb(201, 203, 207)',
+                            'rgb(54, 162, 235)'
+                        ]
+                    }
+                ]
+            },
+            options: {}
+        });
+
+    },
+    error: function (error) {
+        console.log(error)
+    }
+});
+    </script>
+}

@@ -1,0 +1,93 @@
+﻿@model Salud_Vida_2.Models.UserModel
+
+@{
+    ViewBag.Title = "Modificar Usuario";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+
+<h2>Modificar Usuario</h2>
+
+@using (Html.BeginForm("Usuario", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PrimerNombre, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.PrimerNombre, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.SegundoNombre, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.SegundoNombre, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PrimerApellido, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.PrimerApellido, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.SegundoApellido, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.SegundoApellido, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+        @Html.TextBoxFor(model => model.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Estatura, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.Estatura, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.DropDownListFor(model => model.Genero, new SelectList(new[]
+      {
+                new SelectListItem { Text = "Masculino", Value = "Masculino" },
+                new SelectListItem { Text = "Femenino", Value = "Femenino" }
+            }, "Value", "Text"), "Seleccione...", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+        @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+            @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group col-md-6">
+            <a href="@Url.Action("CambioPass", "User")" class="btn btn-secondary">Cambiar Contraseña</a>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+}

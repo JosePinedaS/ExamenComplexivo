@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+
+@{
+    // Frases motivacionales de gym predefinidas
+    string[] frasesMotivacionales = {
+        "El dolor es temporal, la gloria es para siempre.",
+        "No se trata de ser el mejor, se trata de ser mejor que ayer.",
+        "El gimnasio es mi terapia, mi refugio, mi lugar feliz.",
+        "El sudor es la grasa llorando.",
+        "Nunca subestimes el poder de un buen entrenamiento.",
+        "El único mal entrenamiento es el que no se hace.",
+        "Sé más fuerte que tus excusas.",
+        "Tu cuerpo puede hacer cualquier cosa, es tu mente la que necesitas convencer.",
+        "El progreso no es imposible, solo lento.",
+        "No esperes hasta mañana, empieza hoy.",
+        "El dolor que sientes hoy será tu fuerza de mañana.",
+        "Gana el día.",
+        "Entrena como si fuera un deporte.",
+        "Haz que cada día cuente.",
+        "Sé tu propia competencia.",
+        "Nunca te detengas hasta que estés orgulloso.",
+        "Hazlo ahora, lamenta después.",
+        "Cada día es una nueva oportunidad para mejorar.",
+        "Tu cuerpo puede soportar casi cualquier cosa, es tu mente la que necesitas convencer.",
+        "Los logros no vienen de la comodidad.",
+        "Rendirse es simplemente no una opción.",
+        "El cambio no viene fácil, pero vale la pena.",
+        "La diferencia entre lo imposible y lo posible radica en la determinación.",
+        "La verdadera lucha está dentro de ti.",
+        "No hay atajos para ningún lugar que valga la pena.",
+        "Si quieres algo que nunca tuviste, debes estar dispuesto a hacer algo que nunca has hecho.",
+        "No te compares con los demás, compárate con la persona que eras ayer.",
+        "Sé la motivación que necesitas.",
+        "La consistencia es la clave del éxito en cualquier esfuerzo.",
+        "Las excusas no queman calorías."
+    };
+
+    // Seleccionar una frase motivacional aleatoria
+    Random rnd = new Random();
+    string fraseMotivacional = frasesMotivacionales[rnd.Next(frasesMotivacionales.Length)];
+}
+
+<div class="frase-motivacional">
+    <h3>Frase Motivacional del Día</h3>
+    <p>@fraseMotivacional</p>
+</div>
+@{
+    // Consejos de gym predefinidos
+    string[] consejosGym = {
+        "Mantén una buena postura durante todo el entrenamiento para evitar lesiones.",
+        "Hidrátate adecuadamente antes, durante y después del ejercicio.",
+        "No te saltes el calentamiento ni el enfriamiento, son partes esenciales de tu rutina.",
+        "Escucha a tu cuerpo y no fuerces más allá de tus límites.",
+        "Varía tu rutina de ejercicios para evitar el estancamiento y mantener la motivación.",
+        "Asegúrate de incluir ejercicios de fuerza, resistencia y flexibilidad en tu programa de entrenamiento.",
+        "Duerme lo suficiente para permitir que tu cuerpo se recupere y repare.",
+        "No te obsesiones con la báscula, el peso no es el único indicador de progreso.",
+        "Come una dieta equilibrada y rica en nutrientes para apoyar tus objetivos de fitness.",
+        "No te compares con los demás, cada persona tiene su propio camino y progreso.",
+        "Consulta a un profesional de la salud o un entrenador personal antes de comenzar un nuevo programa de ejercicios.",
+        "Escoge un gimnasio que se adapte a tus necesidades y preferencias.",
+        "Establece metas realistas y alcanzables para mantenerte motivado.",
+        "Mantén un registro de tus entrenamientos y progreso para mantenerte enfocado y motivado.",
+        "No te rindas ante los contratiempos, cada obstáculo es una oportunidad para crecer.",
+        "Haz del ejercicio una parte regular de tu vida, no solo algo que haces ocasionalmente.",
+        "Invierte en un buen par de zapatillas deportivas para evitar lesiones y mejorar el rendimiento.",
+        "Escoge ejercicios que disfrutes, así será más fácil mantener la consistencia.",
+        "No descuides el trabajo de fuerza, incluso si tu objetivo es la pérdida de peso.",
+        "Escucha música motivadora durante tus entrenamientos para mantenerte motivado y enfocado.",
+        "No te saltes los días de descanso, el cuerpo necesita tiempo para recuperarse y reconstruirse.",
+        "Sé paciente y constante, los resultados llegan con el tiempo y el esfuerzo constante.",
+        "No te preocupes por lo que otros piensen de ti en el gimnasio, estás allí por ti mismo.",
+        "Aprende a disfrutar del proceso y del viaje hacia tus objetivos, no solo del destino final.",
+        "Siempre estira y refresca tus músculos después de cada entrenamiento para evitar lesiones y mejorar la recuperación.",
+        "Haz del ejercicio una prioridad en tu vida, y todo lo demás se ajustará a su lugar.",
+        "No te desanimes por los contratiempos, cada día es una oportunidad para empezar de nuevo.",
+        "Involucra a un amigo o ser querido en tus entrenamientos para mantener la responsabilidad y la diversión.",
+        "Sé proactivo y busca soluciones cuando te enfrentes a obstáculos en tu camino hacia el fitness.",
+        "No subestimes el poder del descanso y la recuperación en tu progreso general de fitness."
+    };
+
+    // Seleccionar un consejo de gym aleatorio
+    Random rnd1 = new Random();
+    string consejoGym = consejosGym[rnd1.Next(consejosGym.Length)];
+}
+
+<div class="consejo-gym">
+    <h3>Consejo de Gym del Día</h3>
+    <p>@consejoGym</p>
+</div>
+
+@{
+    // Consejos nutricionales predefinidos
+    string[] consejosNutricionales = {
+        "Come más frutas y verduras para obtener vitaminas y minerales esenciales.",
+        "Bebe suficiente agua a lo largo del día para mantenerte hidratado y apoyar tus funciones corporales.",
+        "Incorpora fuentes de proteínas magras en cada comida para mantener la saciedad y apoyar la reparación muscular.",
+        "Limita el consumo de alimentos procesados y ricos en azúcares añadidos.",
+        "Consume grasas saludables como aguacates, nueces y aceite de oliva en lugar de grasas saturadas.",
+        "Lee las etiquetas nutricionales para tomar decisiones informadas sobre tus alimentos.",
+        "Planifica tus comidas y meriendas con anticipación para evitar decisiones poco saludables de última hora.",
+        "No te saltes el desayuno, es la comida más importante del día para mantener la energía y la concentración.",
+        "Incluye fuentes de fibra en tu dieta, como granos enteros, legumbres y verduras, para mejorar la salud digestiva y la saciedad.",
+        "Practica el equilibrio y la moderación en tu dieta, permitiéndote disfrutar de tus alimentos favoritos con moderación.",
+        "Evita las dietas extremas o restrictivas que puedan comprometer tu salud a largo plazo.",
+        "Come despacio y disfruta de cada bocado, lo que puede ayudarte a sentirte más satisfecho con menos comida.",
+        "Limita el consumo de alimentos fritos y opta por métodos de cocción más saludables como asar, hornear o cocinar al vapor.",
+        "Escucha a tu cuerpo y come cuando tengas hambre, evitando comer por aburrimiento o emociones.",
+        "No te saltes las comidas principales, como el almuerzo o la cena, para mantener niveles de energía estables a lo largo del día.",
+        "Opta por refrigerios saludables como frutas frescas, yogur griego o nueces en lugar de opciones poco saludables como papas fritas o galletas.",
+        "Aprende a leer y comprender las listas de ingredientes para identificar aditivos y conservantes poco saludables en los alimentos procesados.",
+        "Limita el consumo de bebidas azucaradas como refrescos y jugos de frutas, optando por agua, té o café sin azúcar en su lugar.",
+        "Incorpora alimentos ricos en calcio, como productos lácteos bajos en grasa o alternativas vegetales fortificadas, para mantener la salud ósea.",
+        "Consulta a un nutricionista o dietista registrado para obtener recomendaciones personalizadas sobre tu dieta y necesidades nutricionales.",
+        "Practica el control de las porciones, utilizando platos más pequeños y sirviendo porciones adecuadas para evitar comer en exceso.",
+        "Mantén un diario de alimentos para hacer un seguimiento de lo que comes y identificar posibles áreas de mejora en tu dieta.",
+        "Incorpora alimentos ricos en antioxidantes, como bayas, vegetales de hojas verdes y frutas cítricas, para combatir el estrés oxidativo y apoyar la salud celular.",
+        "Evita comer frente a la televisión o el ordenador, ya que puede conducir a comer en exceso sin darte cuenta.",
+        "Experimenta con recetas nuevas y emocionantes para mantener tu dieta interesante y variada.",
+        "Evita comprar alimentos poco saludables cuando hagas la compra, ya que no los tendrás a mano cuando te sientas tentado.",
+        "No te castigues por los deslices ocasionales en tu dieta, en su lugar, vuelve a enfocarte en tomar decisiones saludables en el futuro.",
+        "Busca el equilibrio entre tus necesidades calóricas y tus objetivos de salud y bienestar, evitando tanto el exceso como la restricción excesiva.",
+        "Consume alimentos ricos en omega-3, como pescado graso, nueces y semillas de chía, para apoyar la salud del corazón y el cerebro.",
+        "Mantén un enfoque holístico de la nutrición, considerando tanto el aspecto físico como el emocional de tu relación con la comida."
+    };
+
+    // Seleccionar un consejo nutricional aleatorio
+    Random rnd2 = new Random();
+    string consejoNutricional = consejosNutricionales[rnd2.Next(consejosNutricionales.Length)];
+}
+
+<div class="consejo-nutricional">
+    <h3>Consejo Nutricional del Día</h3>
+    <p>@consejoNutricional</p>
+</div>
+
+@{
+    // Datos de 30 músculos diferentes
+    var musculosCuerpo = new Dictionary<string, string[]>
+{
+        {"Pectorales", new string[]{"Los pectorales son un grupo de músculos grandes en la parte frontal del pecho.", "Entrenamiento: Ejercicios como press de banca, flexiones y aperturas de pecho son efectivos.", "Ejemplo de ejercicios: Press de banca, fondos en paralelas, flexiones de pecho."}},
+        {"Dorsales", new string[]{"Los dorsales son músculos grandes en la parte superior de la espalda.", "Entrenamiento: Remo con barra, dominadas y pesos muertos son excelentes ejercicios para desarrollarlos.", "Ejemplo de ejercicios: Dominadas, remo con barra, remo con mancuerna."}},
+        {"Deltoides", new string[]{"Los deltoides son los músculos en forma de triángulo en los hombros.", "Entrenamiento: Elevaciones laterales, press militar y elevaciones frontales ayudan a desarrollarlos.", "Ejemplo de ejercicios: Press militar, elevaciones laterales, elevaciones frontales."}},
+        {"Bíceps", new string[]{"Los bíceps son músculos en la parte delantera de los brazos.", "Entrenamiento: Curl de bíceps con barra, curl de martillo y curl de concentración son efectivos.", "Ejemplo de ejercicios: Curl de bíceps con barra, curl de martillo, curl de concentración."}},
+        {"Tríceps", new string[]{"Los tríceps son músculos en la parte posterior de los brazos.", "Entrenamiento: Fondos en paralelas, extensiones de tríceps y press de tríceps son buenos ejercicios.", "Ejemplo de ejercicios: Fondos en paralelas, extensiones de tríceps, press de tríceps."}},
+        {"Abdominales", new string[]{"Los abdominales son músculos en el área del abdomen.", "Entrenamiento: Crunches, planchas y elevaciones de piernas son fundamentales para fortalecerlos.", "Ejemplo de ejercicios: Crunches, planchas, elevaciones de piernas."}},
+        {"Cuádriceps", new string[]{"Los cuádriceps son músculos en la parte frontal de los muslos.", "Entrenamiento: Sentadillas, prensa de piernas y zancadas son esenciales para desarrollarlos.", "Ejemplo de ejercicios: Sentadillas, prensa de piernas, zancadas."}},
+        {"Isquiotibiales", new string[]{"Los isquiotibiales son músculos en la parte posterior de los muslos.", "Entrenamiento: Peso muerto, curl de piernas y hip thrust son excelentes para trabajarlos.", "Ejemplo de ejercicios: Peso muerto, curl de piernas, hip thrust."}},
+        {"Gemelos", new string[]{"Los gemelos son músculos en la parte inferior de las piernas.", "Entrenamiento: Elevaciones de gemelos de pie, elevaciones de gemelos sentado y saltos son útiles para fortalecerlos.", "Ejemplo de ejercicios: Elevaciones de gemelos de pie, elevaciones de gemelos sentado, saltos."}},
+        {"Glúteos", new string[]{"Los glúteos son los músculos en la parte posterior de las caderas.", "Entrenamiento: Sentadillas profundas, hip thrust y patadas de glúteos son importantes para desarrollarlos.", "Ejemplo de ejercicios: Sentadillas profundas, hip thrust, patadas de glúteos."}},
+        {"Trapecios", new string[]{"Los trapecios son músculos en la parte superior de la espalda y el cuello.", "Entrenamiento: Encogimientos de hombros, remo al cuello y remo con barra son ejercicios clave para ellos.", "Ejemplo de ejercicios: Encogimientos de hombros, remo al cuello, remo con barra."}},
+        {"Espinaleis", new string[]{"Los espinales son músculos a lo largo de la columna vertebral.", "Entrenamiento: Hiperextensiones, peso muerto y pull overs son útiles para trabajarlos.", "Ejemplo de ejercicios: Hiperextensiones, peso muerto, pull overs."}},
+        {"Psoas", new string[]{"El psoas es un músculo profundo en la parte frontal del abdomen.", "Entrenamiento: Ejercicios de flexión de cadera como la elevación de piernas tumbado son buenos para fortalecerlo.", "Ejemplo de ejercicios: Elevación de piernas tumbado, puentes de glúteos."}},
+        {"Pantorrillas", new string[]{"Las pantorrillas son músculos en la parte posterior de las piernas.", "Entrenamiento: Elevaciones de pantorrillas en máquina, saltos en lugar y elevaciones de pantorrillas sentado son efectivos.", "Ejemplo de ejercicios: Elevaciones de pantorrillas en máquina, saltos en lugar, elevaciones de pantorrillas sentado."}},
+        {"Adductores", new string[]{"Los adductores son músculos en la parte interna de los muslos.", "Entrenamiento: Ejercicios como el cierre de piernas en máquina y sentadillas sumo son buenos para trabajarlos.", "Ejemplo de ejercicios: Cierre de piernas en máquina, sentadillas sumo, abducciones de cadera."}},
+        {"Abductores", new string[]{"Los abductores son músculos en la parte externa de los muslos.", "Entrenamiento: Abducciones de cadera con banda elástica y elevaciones laterales de pierna son útiles para fortalecerlos.", "Ejemplo de ejercicios: Abducciones de cadera con banda elástica, elevaciones laterales de pierna, patadas de burro."}},
+        {"Flexores de cadera", new string[]{"Los flexores de cadera son músculos en la parte delantera de la cadera.", "Entrenamiento: Ejercicios como el squat profundo y el step up son importantes para su desarrollo.", "Ejemplo de ejercicios: Squat profundo, step up, lunge."}},
+        {"Extensión del tobillo", new string[]{"Los músculos de la extensión del tobillo están en la parte inferior de la pierna.", "Entrenamiento: Ejercicios como el levantamiento de pantorrillas sentado y el levantamiento de pantorrillas de pie ayudan a fortalecerlos.", "Ejemplo de ejercicios: Levantamiento de pantorrillas sentado, levantamiento de pantorrillas de pie."}},
+        {"Rotadores de hombros", new string[]{"Los rotadores de hombros son músculos pequeños alrededor de la articulación del hombro.", "Entrenamiento: Ejercicios de rotación con bandas de resistencia y ejercicios de rotación con mancuernas son beneficiosos.", "Ejemplo de ejercicios: Rotación con bandas de resistencia, rotación con mancuernas, face pull."}},
+        {"Serrato", new string[]{"El serrato es un músculo en la parte superior de la caja torácica.", "Entrenamiento: Ejercicios como el press con mancuernas y las flexiones de escápulas son útiles para desarrollarlo.", "Ejemplo de ejercicios: Press con mancuernas, flexiones de escápulas, fondos de pecho."}},
+        {"Flexores de codo", new string[]{"Los flexores de codo son músculos en la parte anterior del brazo.", "Entrenamiento: Curl de bíceps, curl de martillo y curl de concentración son ejercicios efectivos.", "Ejemplo de ejercicios: Curl de bíceps, curl de martillo, curl de concentración."}},
+        {"Extensores de codo", new string[]{"Los extensores de codo son músculos en la parte posterior del brazo.", "Entrenamiento: Extensiones de tríceps, press de tríceps y fondos en paralelas son fundamentales para su desarrollo.", "Ejemplo de ejercicios: Extensiones de tríceps, press de tríceps, fondos en paralelas."}},
+        {"Flexores de muñeca", new string[]{"Los flexores de muñeca están en la parte interna del antebrazo.", "Entrenamiento: Curl de muñeca, martillo de muñeca y pronación de muñeca son ejercicios útiles.", "Ejemplo de ejercicios: Curl de muñeca, martillo de muñeca, pronación de muñeca."}},
+        {"Extensor de muñeca", new string[]{"El extensor de muñeca está en la parte externa del antebrazo.", "Entrenamiento: Extensión de muñeca con barra, extensión de muñeca con polea y extensión de muñeca con mancuerna son efectivos.", "Ejemplo de ejercicios: Extensión de muñeca con barra, extensión de muñeca con polea, extensión de muñeca con mancuerna."}},
+        {"Aductores", new string[]{"Los aductores son músculos en la parte interna del muslo.", "Entrenamiento: Abducciones de cadera, sentadillas sumo y cierre de piernas en máquina son efectivos.", "Ejemplo de ejercicios: Abducciones de cadera, sentadillas sumo, cierre de piernas en máquina."}},
+        {"Elevadores de escápula", new string[]{"Los elevadores de escápula son músculos en la parte superior de la espalda.", "Entrenamiento: Encogimientos de hombros, elevaciones de hombros y remo al cuello son útiles para trabajarlos.", "Ejemplo de ejercicios: Encogimientos de hombros, elevaciones de hombros, remo al cuello."}},
+        {"Interóseos de la mano", new string[]{"Los interóseos de la mano son músculos entre los huesos de la mano.", "Entrenamiento: Ejercicios de agarre y ejercicios de fortalecimiento de la mano son importantes para ellos.", "Ejemplo de ejercicios: Ejercicios de agarre con pelota, ejercicios de fortalecimiento de la mano con banda elástica."}}
+    };
+
+    // Seleccionar un músculo aleatorio
+    Random rnd3 = new Random();
+    var musculo = musculosCuerpo.ElementAt(rnd3.Next(musculosCuerpo.Count));
+    string nombreMusculo = musculo.Key;
+    string[] detallesMusculo = musculo.Value;
+}
+
+<div class="musculo-aleatorio">
+    <h3>@nombreMusculo</h3>
+    <ul>
+        @foreach (var detalle in detallesMusculo)
+        {
+            <li>@detalle</li>
+        }
+    </ul>
+</div>
+<style>
+    
+
+    h3 {
+        /* Estilo para encabezados */
+        font-weight: bold;
+        font-size: 1.8em; /* Tamaño de fuente para encabezados */
+        margin-bottom: 15px; /* Espacio entre encabezados y párrafos */
+        color: #555; /* Color de encabezado más oscuro */
+    }
+
+    p {
+        /* Estilo para párrafos */
+        margin-bottom: 20px; /* Espacio entre párrafos */
+    }
+
+    ul {
+        /* Estilo para listas desordenadas */
+        list-style-type: disc; /* Tipo de viñeta */
+        margin-bottom: 20px; /* Espacio entre listas y párrafos */
+    }
+
+    li {
+        /* Estilo para elementos de lista */
+        margin-left: 20px; /* Sangría de elementos de lista */
+    }
+</style>
+
+
+
+

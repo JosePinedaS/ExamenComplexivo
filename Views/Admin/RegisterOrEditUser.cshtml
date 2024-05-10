@@ -1,0 +1,248 @@
+﻿@model Salud_Vida_2.Models.UserModel
+
+@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("RegisterOrEditUser", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.IdUsuario)
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.PrimerNombre, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.PrimerNombre, new { @class = "form-control", placeholder = "Agregar Primer Nombre", maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.PrimerNombre, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.SegundoNombre, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.SegundoNombre, new { @class = "form-control", maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.SegundoNombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.PrimerApellido, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.PrimerApellido, new { @class = "form-control", maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.PrimerApellido, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.SegundoApellido, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.SegundoApellido, new { @class = "form-control", maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.SegundoApellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Estatura, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Estatura, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estatura, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.DropDownListFor(model => model.Genero, new SelectList(new List<string> { "Hombre", "Mujer", "Otro" }), "Seleccione el género", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Peso, new { @class = "form-control", step = "0.01" })
+                @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", maxlength = "150" })
+                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Correo, new { @class = "form-control", maxlength = "100" })
+                @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "FechaInicio" })
+                @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.FechaFinal, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "FechaFinal" })
+                <span id="advertencia" class="text-danger"></span>
+            </div>
+
+            <script>
+                // Función para calcular la fecha final y mostrar advertencias
+                function calcularFechaFinal() {
+                    var fechaInicio = new Date(document.getElementById("FechaInicio").value);
+                    var fechaFinal = new Date(fechaInicio);
+                    fechaFinal.setDate(fechaFinal.getDate() + 30); // Agregar 30 días
+
+                    // Mostrar la fecha final ajustada en el segundo input
+                    document.getElementById("FechaFinal").valueAsDate = fechaFinal;
+
+                    // Calcular la diferencia entre la fecha final y la fecha actual
+                    var hoy = new Date();
+                    var diferencia = (fechaFinal - hoy) / (1000 * 60 * 60 * 24);
+
+                    // Mostrar advertencia si faltan menos de 5 días para la fecha final
+                    if (diferencia <= 5 && diferencia >= 0) {
+                        document.getElementById("advertencia").innerHTML = "¡Quedan menos de 5 días para que se acabe su inscripción!";
+                    } else {
+                        document.getElementById("advertencia").innerHTML = "";
+                    }
+                }
+
+                // Llamar a la función al cargar la página
+                window.onload = function () {
+                    calcularFechaFinal();
+                };
+
+                // Llamar a la función cuando cambie la fecha inicial
+                document.getElementById("FechaInicio").addEventListener("change", calcularFechaFinal);
+
+                // Obtener la fecha actual
+                var currentDate = new Date();
+
+                // Obtener la fecha final desde el modelo de Razor (asegúrate de que esté en el formato correcto)
+                var finalDate = new Date("@Model.FechaFinal");
+
+                // Obtener el tipo de usuario desde el modelo de Razor
+                var userType = "@Model.TipoUsuario";
+
+                // Función para verificar el estado del usuario en intervalos regulares
+                function verificarEstadoUsuario() {
+                    // Obtener la fecha actual
+                    var currentDate = new Date();
+
+                    // Verificar si el tipo de usuario es igual a 2 y la fecha final es anterior a la fecha actual
+                    if (userType === "2" && finalDate < currentDate) {
+                        // Si cumple la condición, establecer el estado del usuario en falso
+                        document.getElementById("EstadoUsuario").checked = false;
+                    }
+                }
+
+                // Llamar a la función de verificación cada cierto intervalo de tiempo (por ejemplo, cada minuto)
+                setInterval(verificarEstadoUsuario, 60000); // 60000 milisegundos = 1 minuto
+            </script>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.TipoUsuario, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.DropDownListFor(model => model.TipoUsuario, new SelectList(new Dictionary<string, string> { { "1", "Admin" }, { "2", "Usuario" } }, "Key", "Value"), "Seleccione el tipo de usuario", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoUsuario, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control", maxlength = "10" })
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+
+                @if (ViewBag.Title?.ToString() == "Registrar Usuario")
+                {
+                    @* Mostrar campo de contraseña solo al registrar un nuevo usuario *@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", maxlength = "20", id = "Password1" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else if (ViewBag.Title?.ToString() == "Editar Usuario")
+                {
+                    @* Mostrar botón para cambiar la contraseña solo al editar un usuario existente *@
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                    <div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePasswordModal" id="BotonModalPrendido">
+                            Cambiar Contraseña
+                        </button>
+                    </div>
+
+                    <!-- Modal para cambiar la contraseña -->
+                    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="changePasswordModalLabel">Cambiar Contraseña</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="BotonCerrarModal">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Aquí puedes agregar el formulario para cambiar la contraseña -->
+                                    <!-- Por simplicidad, solo incluyo un campo para la nueva contraseña -->
+                                    @using (Html.BeginForm("CambiarContrasena", "Admin", FormMethod.Post))
+                                    {
+                                        <!-- Campo oculto para enviar el ID del usuario -->
+
+                                        <div class="form-group">
+                                            @Html.Label("Nueva Contraseña", htmlAttributes: new { @class = "control-label text-primary", style = "font-size: larger;" })
+                                            @Html.Password("NewPassword", null, new { @class = "form-control", id = "newPasswordInput" })
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                                    }
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="BotonCerrarModa">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#BotonModalPrendido').click(function () {
+                                $('#changePasswordModal').modal('show');
+                            });
+                        });
+                        $(document).ready(function () {
+                            $('#BotonCerrarModal').click(function () {
+                                $('#changePasswordModal').modal('hide');
+                            });
+                            $('#BotonCerrarModa').click(function () {
+                                $('#changePasswordModal').modal('hide');
+                            });
+                        });
+                    </script>
+
+                }
+                <!-- Campo oculto para la contraseña original -->
+                @* Campo oculto para la contraseña, se enviará al servidor pero no se mostrará al usuario *@
+                @Html.HiddenFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">@ViewBag.Title</button>
+        </div>
+    </div>
+}

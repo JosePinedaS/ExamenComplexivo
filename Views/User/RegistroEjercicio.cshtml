@@ -1,0 +1,167 @@
+﻿
+@model IEnumerable<Salud_Vida_2.Models.EjerciciosModel>
+
+@{
+    ViewBag.Title = "RegistroEjercicio";
+    Layout = "~/Views/Shared/_Layout_Usuario.cshtml";
+}
+@using (Html.BeginForm("TerminarEntrenamiento", "User", FormMethod.Post, new { onsubmit = "return validarPesoFinal();" }))
+{
+@Html.AntiForgeryToken()
+<div class="row">
+
+    <div class="form-group col-md-6">
+        <h2>Registra tus ejercicios</h2>
+    </div>
+
+    <input type="hidden" id="pesoInicial" name="pesoInicial" value="@ViewBag.PesoInicial">
+
+
+    <div class="form-group col-md-6">
+        <label for="pesoFinal">Peso al Terminar (Kg)</label>
+        <input type="number" class="form-control" id="pesoFinalInput" name="pesoFinal" required="required" min="10" max="1000">
+    </div>
+
+</div>
+<br />
+<div class="row">
+    <div class="form-group col-md-6">
+        <h4>Pide ayuda a un instructor si no sabes realizar algun ejercicio</h4>
+    </div>
+
+
+    <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-danger">Terminar Entrenamiento</button>
+    </div>
+
+</div>
+<br />
+}
+<div class="container">
+    <div class="row">
+        @if (Model != null && Model.Any()) // Verificar si hay datos en el modelo
+        {
+            foreach (var ejercicio in Model)
+            {
+                <div class="col-md-4" style="text-align:center">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" src="@ejercicio.ImagenEjercicio" alt="Imagen de Ejercicio" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="card-body">
+                            <p class="card-text">@ejercicio.NombreEjercicio</p>
+                            <button type="button" class="btn btn-primary" onclick="mostrarDetalles( '@ejercicio.NombreEjercicio', '@ejercicio.ZonaEjercicio', '@ejercicio.MetEjercicio', '@ejercicio.DetalleEjercicio', '@ejercicio.ImagenEjercicio')">Ver detalles</button>
+                            <button type="button" class="btn btn-success" onclick="registrarDatos(@ejercicio.IdEjercicio, @ejercicio.MetEjercicio)">Registrar Datos</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    No se encontraron ejercicios.
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="popupDetalles" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupDetallesLabel"></h5>
+                <button type="button" class="close" onclick="cerrarDetalles()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="imagenEjercicioModal" class="bd-placeholder-img" src="" alt="Imagen de Ejercicio" style="width: 80%; height: auto;">
+                <p id="zonaEjercicio"></p>
+                <p id="metEjercicio"></p>
+                <p id="detalleEjercicio"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupRegistro" class="modal fade">
+    @using (Html.BeginForm("RegistroEjercicio", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrar Datos del Ejercicio</h5>
+                    <button type="button" class="close" onclick="cerrarRegistro()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formRegistroEjercicio">
+                        <input type="hidden" id="idEjercicio" name="idEjercicio">
+                        <input type="hidden" id="metEjercicio" name="metEjercicio">
+
+                        <div class="form-group">
+                            <label for="tiempoEjercicio">Tiempo (minutos)</label>
+                            <input type="number" class="form-control" id="tiempoEjercicio" name="tiempoEjercicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="repeticionesEjercicio">Repeticiones</label>
+                            <input type="number" class="form-control" id="repeticionesEjercicio" name="repeticionesEjercicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="seriesEjercicio">Series</label>
+                            <input type="number" class="form-control" id="seriesEjercicio" name="seriesEjercicio">
+                        </div>
+
+                        <!-- Aquí agregamos el elemento para mostrar el valor de MET -->
+                        <p id="metEjercicioRegistro"></p>
+
+                        <button type="submit" class="btn btn-primary">Guardar Datos</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+<script>
+    function mostrarDetalles(nombre, zona, met, detalle, imagen) {
+        document.getElementById("popupDetallesLabel").innerText = nombre;
+        document.getElementById("zonaEjercicio").innerText = "Zona: " + zona;
+        document.getElementById("metEjercicio").innerText = "MET: " + met;
+        document.getElementById("detalleEjercicio").innerText = detalle;
+        document.getElementById("imagenEjercicioModal").src = imagen;
+        $('#popupDetalles').modal('show');
+    }
+
+    function cerrarDetalles() {
+        $('#popupDetalles').modal('hide');
+    }
+    function registrarDatos(idEjercicio, metEjercicio) {
+        document.getElementById("idEjercicio").value = idEjercicio;  // Establece el ID del ejercicio en el formulario
+        document.getElementById("metEjercicioRegistro").innerText = "MET: " + metEjercicio;  // Muestra el MET en la ventana emergente de registro
+        $('#popupRegistro').modal('show');  // Muestra el pop-up para registrar datos
+    }
+
+    function cerrarRegistro() {
+        $('#popupRegistro').modal('hide');  // Cierra el modal de registro
+    }
+
+    function validarPesoFinal() {
+        var pesoInicial = parseFloat(document.getElementById("pesoInicial").value);
+        var pesoFinal = parseFloat(document.getElementById("pesoFinalInput").value);
+
+        if (pesoFinal <= pesoInicial - 10) {
+            alert("El peso final debe ser al menos 10 kg mayor que el peso inicial.");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
