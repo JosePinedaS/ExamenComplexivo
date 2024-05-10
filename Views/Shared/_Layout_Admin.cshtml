@@ -59,12 +59,13 @@
                             @Session["NombreCompleto"] <img src="https://via.placeholder.com/30" alt="User Image" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-dark" href="#">Perfil</a>
+                            @Html.ActionLink("Perfil", "Usuario", "User", new { area = "" }, new { @class = "dropdown-item text-dark" })
+                            <div class="dropdown-divider"></div>
                             @if (Session["EsNoAdministrador"] != null && (bool)Session["EsNoAdministrador"]) // Verifica si la sesión no es nula y el usuario es no administrador
                             {
                                 <a class='dropdown-item' href='#' style='color: red;'> @Session["DiasRestantes"]</a>
                             }
-                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Modo User", "Index", "User", new { area = "" }, new { @class = "dropdown-item text-dark" })
                             <div class="dropdown-divider"></div>
                             @Html.ActionLink("Cerrar sesión", "Logout", "Access", new { area = "" }, new { @class = "dropdown-item" })
                         </div>
